@@ -74,12 +74,12 @@ public class SideBar extends View {
 			paint.setTypeface(Typeface.DEFAULT_BOLD);
 			paint.setAntiAlias(true);
 			paint.setTextSize(20);
-			// 选中的状�?
+			// 选中的状态
 			if (i == choose) {
 				paint.setColor(Color.parseColor("#3399ff"));
 				paint.setFakeBoldText(true);
 			}
-			// x坐标等于中间-字符串宽度的�?��.
+			// x坐标等于中间-字符串宽度的一半
 			float xPos = width / 2 - paint.measureText(b[i]) / 2;
 			float yPos = singleHeight * i + singleHeight;
 			canvas.drawText(b[i], xPos, yPos, paint);
@@ -94,7 +94,7 @@ public class SideBar extends View {
 		final float y = event.getY();// 点击y坐标
 		final int oldChoose = choose;
 		final OnTouchingLetterChangedListener listener = onTouchingLetterChangedListener;
-		final int c = (int) (y / getHeight() * b.length);// 点击y坐标�?��总高度的比例*b数组的长度就等于点击b中的个数.
+		final int c = (int) (y / getHeight() * b.length);// 点击y坐标占总高度的比例*b数组的长度就等于点击b中的个数.
 
 		switch (action) {
 		case MotionEvent.ACTION_UP:
@@ -107,7 +107,7 @@ public class SideBar extends View {
 			break;
 
 		default:
-			//设置右侧字母列表[A,B,C,D,E....]的背景颜�?
+			//设置右侧字母列表[A,B,C,D,E....]的背景颜色
 			setBackgroundResource(R.drawable.sortlistview_sidebar_background);
 			if (oldChoose != c) {
 				if (c >= 0 && c < b.length) {

@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onTouchingLetterChanged(String s) {
-				// ¸Ã×ÖÄ¸Ê×´Î³öÏÖµÄÎ»ÖÃ
+
 				System.out.println(s);
 				int position = getPositionForSection(s);
 				// getFirstLetter(s);
@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
 	}
 
 	/**
-	 * »ñÈ¡ÆäµÚÒ»´Î³öÏÖ¸ÃÊ××ÖÄ¸µÄÎ»ÖÃ
+	 * è·å–ç¬¬ä¸€ä¸ªå‡ºç°è¯¥å­—æ¯çš„ä½ç½®
 	 */
 	private int getPositionForSection(String s) {
 		if (s.equals("#")) {
@@ -196,15 +196,19 @@ public class MainActivity extends Activity {
 		return null;
 
 	}
-
+/**
+ * è·å–æµ‹è¯•jsonæ•°æ®
+ * 
+ * @return jsonString
+ */
 	public String testJsonString() {
 		String[] b = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
 				"P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#" };
-		String[] hanZi = { "°®ÀöÉá", "±¼³Û", "³µÇ°", "¶«·ç", "¶õ¶û¶àË¹", "·¨À­Àû", "¸ßÀÖ¸ß", "¹şµÇ", "I", "¼ªÀû", "¿¨Ñç",
-				"À×¿ËÈøË¹", "Ä¦ÍĞÂŞÀ­", "Åµ»ùÑÇ", "Å·À³ÑÅ", "Æ®Èá", "ÆßÆ¥ÀÇ", "ÈİÉù", "Éù¶«»÷Î÷", "Ì¨µç", "UFO", "VCD", "ä×Ì«»ª",
-				"Ğ¡Ìì¶ì", "ÑÅÂí¹ş", "ÕæÎ¬Ë¹" ,"00"};
-		String jsonresult = "";//¶¨Òå·µ»Ø×Ö·û´®  
-		JSONObject object = new JSONObject();//´´½¨Ò»¸ö×ÜµÄ¶ÔÏó£¬Õâ¸ö¶ÔÏó¶ÔÕû¸öjson´®  
+		String[] hanZi = { "çˆ±ä¸½èˆ", "å¥”é©°", "è½¦å‰", "ä¸œé£", "é„‚å°”å¤šæ–¯", "æ³•æ‹‰åˆ©", "é«˜ä¹é«˜", "å“ˆç™»", "iPhone", "å‰åˆ—",
+				"å¡å®´", "åŠ³æ–¯è±æ–¯", "æ‘©æ‰˜ç½—æ‹‰", "è¯ºåŸºäºš", "æ¬§è±é›…", "é£˜æŸ”", "ä¸ƒåŒ¹ç‹¼", "æ±é˜³", "åœ£å½¼å¾—å ¡", "Ì¨å°æ¹¾", "UFO", "VCD",
+				"æ¸¥å¤ªå", "è¥¿ä¼¯åˆ©äºš", "é›…é©¬å“ˆ", "çœŸç»´æ–¯", "00" };
+		String jsonresult = "";
+		JSONObject object = new JSONObject();
 		try {
 
 			int brandCount = 0;
@@ -226,13 +230,12 @@ public class MainActivity extends Activity {
 				jsonObj2.put(b[k], jsonArray1);
 
 			}
-			object.put("data", jsonObj2);//Ïò×Ü¶ÔÏóÀïÃæÌí¼Ó°üº¬petµÄÊı×é  
-			jsonresult = object.toString();//Éú³É·µ»Ø×Ö·û´®  
+			object.put("data", jsonObj2);
+			jsonresult = object.toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block  
 			e.printStackTrace();
 		}
-		//		Log.i("test", "Éú³ÉµÄjson´®Îª:" + jsonresult);
 		return jsonresult;
 	}
 
