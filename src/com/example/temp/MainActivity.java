@@ -13,17 +13,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.TextView;
 
 import com.example.temp.SideBar.OnTouchingLetterChangedListener;
 
 public class MainActivity extends Activity {
 
-	ExpandableListView expandableListView;
+	ExpandableListView mExpandableListView;
 	private SideBar mSideBar;
 	private TextView mDialog;
-	ListViewAdapter treeViewAdapter;
+	SortedListViewAdapter mSortedExpandableListViewAdapter;
 
 	public String[] groups;
 	List<String> group;
@@ -35,40 +35,21 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 
 		group = getBrandListFromJson(testJsonString());
-		groups = group.toArray(new String[group.size()]);
-		child = new String[groups.length][1];
-		for (int i = 0; i < child.length; i++) {
-			for (int j = 0; j < child[i].length; j++) {
-				child[i][j] = "";
-			}
-		}
 
-		treeViewAdapter = new ListViewAdapter(this, ListViewAdapter.PaddingLeft >> 1, group);
-		expandableListView = (ExpandableListView) this.findViewById(R.id.expandableListView);
+		mExpandableListView = (ExpandableListView) findViewById(R.id.sortedExpandableListView);
+		mSortedExpandableListViewAdapter = new SortedListViewAdapter(this, group);
+		mExpandableListView.setAdapter(mSortedExpandableListViewAdapter);
+		mExpandableListView.expandGroup(0);
 
-		List<ListViewAdapter.TreeNode> treeNode = treeViewAdapter.GetTreeNode();
-		for (int i = 0; i < groups.length; i++) {
-
-			ListViewAdapter.TreeNode node = new ListViewAdapter.TreeNode();
-			node.parent = groups[i];
-			for (int ii = 0; ii < child[i].length; ii++) {
-				node.childs.add(child[i][ii]);
-			}
-			treeNode.add(node);
-		}
-
-		treeViewAdapter.UpdateTreeNode(treeNode);
-		expandableListView.setAdapter(treeViewAdapter);
-
-		expandableListView.setOnGroupExpandListener(new OnGroupExpandListener() {
+		mExpandableListView.setOnGroupExpandListener(new OnGroupExpandListener() {
 
 			@Override
 			public void onGroupExpand(int groupPosition) {
 				// TODO Auto-generated method stub
 				//				setSelection(groupPosition);
-				for (int i = 0; i < groups.length; i++) {
+				for (int i = 0; i < group.size(); i++) {
 					if (groupPosition != i) {
-						expandableListView.collapseGroup(i);
+						mExpandableListView.collapseGroup(i);
 					}
 
 				}
@@ -76,7 +57,7 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		mSideBar = (SideBar) findViewById(R.id.sidrbar);
+		mSideBar = (SideBar) findViewById(R.id.sideBar);
 		mDialog = (TextView) findViewById(R.id.dialog);
 
 		mSideBar.setTextView(mDialog);
@@ -91,7 +72,7 @@ public class MainActivity extends Activity {
 				// getFirstLetter(s);
 				if (position != -1) {
 					// myExpandableListView.setSelectionFromTop(position, y);
-					expandableListView.setSelectedGroup(position);
+					mExpandableListView.setSelectedGroup(position);
 				}
 
 			}
@@ -220,8 +201,8 @@ public class MainActivity extends Activity {
 		String[] b = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
 				"P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#" };
 		String[] hanZi = { "爱丽舍", "奔驰", "车前", "东风", "鄂尔多斯", "法拉利", "高乐高", "哈登", "I", "吉利", "卡宴",
-				"雷克萨斯", "摩托罗拉", "诺基亚", "欧莱雅", "飘柔", "七匹狼", "容声", "声东击西", "台电", "U", "V", "渥太华",
-				"小天鹅", "雅马哈", "真维斯", "00" };
+				"雷克萨斯", "摩托罗拉", "诺基亚", "欧莱雅", "飘柔", "七匹狼", "容声", "声东击西", "台电", "UFO", "VCD", "渥太华",
+				"小天鹅", "雅马哈", "真维斯" ,"00"};
 		String jsonresult = "";//定义返回字符串  
 		JSONObject object = new JSONObject();//创建一个总的对象，这个对象对整个json串  
 		try {

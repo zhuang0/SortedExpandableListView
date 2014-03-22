@@ -2,17 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
 
         <ExpandableListView
-            android:id="@+id/expandableListView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-        </ExpandableListView>
+            android:id="@+id/sortedExpandableListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/dialog"
@@ -24,12 +24,11 @@
             android:textColor="#ffffffff"
             android:textSize="30.0dip"
             android:visibility="invisible" />
-
-        <com.example.temp.SideBar
-            android:id="@+id/sidrbar"
-            android:layout_width="30.0dip"
-            android:layout_height="fill_parent"
-            android:layout_gravity="right|center" />
     </FrameLayout>
+
+    <com.example.temp.SideBar
+        android:id="@+id/sideBar"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

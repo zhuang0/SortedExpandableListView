@@ -4,7 +4,7 @@
     android:layout_height="fill_parent" >
 
     <com.example.temp.MyGridView
-        android:id="@+id/GridView_toolbar"
+        android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="3" >
